@@ -43,28 +43,63 @@
 
 
 // Recursion + Memo
+//O(N*(forget-delay))
+
+// class Solution {
+// public:
+//     int MOD = 1e9+7;
+//     vector<int> dp;
+//     int solve(int day, int delay, int forget){
+//         if(day==1) return 1;
+//         //if(day<1) return 0;
+//         if(dp[day] != -1) return dp[day];
+//         int res = 0;
+//         for(int d = day-forget+1; d <= day - delay; d++){
+//             if(d>0)
+//                 res = (res + solve(d, delay,forget)) % MOD;
+//         }
+//         return dp[day] = res;
+//     }
+
+//     int peopleAwareOfSecret(int n, int delay, int forget) {
+//         int ans = 0;
+//         dp.assign(n+1,-1);
+//         for(int i = n-forget+1; i <= n; i++){
+//             if(i>0)
+//                 ans = (ans + solve(i,delay,forget)) % MOD;
+//         }
+//         return ans;
+//     }
+// };
+
+
+
+
+
+
+
+//Bottom Up
+
 
 class Solution {
 public:
     int MOD = 1e9+7;
-    vector<int> dp;
-    int solve(int day, int delay, int forget){
-        if(day==1) return 1;
-        if(day<1) return 0;
-        if(dp[day] != -1) return dp[day];
-        int res = 0;
-        for(int d = day-forget+1; d <= day - delay; d++){
-            res = (res + solve(d, delay,forget)) % MOD;
-        }
-        return dp[day] = res;
-    }
 
     int peopleAwareOfSecret(int n, int delay, int forget) {
-        int ans = 0;
-        dp.assign(n+1,-1);
-        for(int i = n-forget+1; i <= n; i++){
-            ans = (ans + solve(i,delay,forget)) % MOD;
+        vector<int> dp(n+1);
+        dp[1] = 1;
+        for(int day = 2; day <= n; day++){
+            int cnt = 0;
+            for(int d = day-forget+1; d <= day-delay; d++){
+                if(d>0) cnt = (cnt + dp[d]) % MOD;
+            }
+            dp[day] = cnt;
         }
-        return ans;
+
+        int res = 0;
+        for(int i = n-forget+1; i <= n; i++){
+            if(i>0) res = (res + dp[i]) % MOD;
+        }
+        return res;
     }
 };
