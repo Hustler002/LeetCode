@@ -1,4 +1,4 @@
-// Using Priority Queue
+// Using Priority Queue (TLE)
 // O(N2*logN)
 
 
@@ -42,6 +42,9 @@
 
 
 
+
+
+
 // Recursion + Memo
 //O(N*(forget-delay))
 
@@ -77,9 +80,9 @@
 
 
 
-
+//Optimizeddd
 //Bottom Up
-
+// O(N)
 
 class Solution {
 public:
@@ -88,11 +91,13 @@ public:
     int peopleAwareOfSecret(int n, int delay, int forget) {
         vector<int> dp(n+1);
         dp[1] = 1;
+        int cnt = 0;
         for(int day = 2; day <= n; day++){
-            int cnt = 0;
-            for(int d = day-forget+1; d <= day-delay; d++){
-                if(d>0) cnt = (cnt + dp[d]) % MOD;
-            }
+            if(day-delay>0)
+                cnt = (cnt + dp[day-delay]) % MOD;
+            if(day-forget > 0)
+                cnt = (cnt - dp[day-forget] + MOD) % MOD;
+
             dp[day] = cnt;
         }
 
