@@ -11,11 +11,6 @@
  * };
  */
 
-
-
-
-
-
 // class Solution {
 // public:
 //     void fun(vector<string>& vec, TreeNode* root, string ss) {
@@ -57,32 +52,25 @@
 //     }
 // };
 
-
-
-
-
-
-//optimiseddddddddddddddddddddd
-
+// optimiseddddddddddddddddddddd
 
 class Solution {
 public:
-    int dfs( TreeNode* root,int res ) {
-        if(root==NULL) return 0;
-    
-    res = 10*res + root->val;
-      if(root->left==NULL && root->right==NULL){
-        return res;
-      }
+    int dfs(TreeNode* root, int res) {
+        if (root == NULL)
+            return 0;
 
-      return dfs(root->left,res) + dfs(root->right,res);
+        res = 10 * res + root->val;
+        if (root->left == NULL && root->right == NULL) {
+            return res;
+        }
+
+        return dfs(root->left, res) + dfs(root->right, res);
     }
     int sumNumbers(TreeNode* root) {
 
         long long res = 0;
 
-        
-
-        return dfs(root,res);
+        return dfs(root, res);
     }
 };
