@@ -14,9 +14,9 @@ public:
             vector<int> tmp;
             for (auto it = mpp.begin(); it != mpp.end(); ) {
                 tmp.push_back(it->first);
-                // decrement count; if it reaches zero erase and update iterator safely
+               
                 if (--(it->second) == 0) {
-                    it = mpp.erase(it); // erase returns next iterator (C++11+)
+                    it = mpp.erase(it); 
                 } else {
                     ++it;
                 }
