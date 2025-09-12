@@ -6,10 +6,7 @@ public:
         for ( auto it : nums){
             mpp[it]++;
         }
-        int maxi = INT_MIN;
-        for ( auto it: mpp){
-            maxi = max(maxi,it.second);
-        }
+       
 
         vector<vector<int>> res;
 
