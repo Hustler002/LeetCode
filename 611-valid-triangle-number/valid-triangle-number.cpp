@@ -1,16 +1,24 @@
 class Solution {
 public:
     int triangleNumber(vector<int>& nums) {
+        int n=nums.size();
+        if(n<3)return 0;
+        int count=0;
         sort(nums.begin(), nums.end());
-        int n = nums.size();
-        int cnt = 0;
-        for(int i = 0; i < n-2; i++){
-            for(int j = i+1; j < n-1; j++){
-                for(int k = j+1; k < n; k++){
-                    if(nums[i]+nums[j] > nums[k]) cnt++;
+
+        for(int i=n-1; i>1; i--){
+            int r=i-1;
+            int l=0;
+            while(l<r){
+                int sum=nums[l]+nums[r];
+                if(sum>nums[i]){
+                    count+=(r-l);
+                    r--;
+                }else{
+                   l++;
                 }
             }
         }
-        return cnt;
+        return count; 
     }
 };
