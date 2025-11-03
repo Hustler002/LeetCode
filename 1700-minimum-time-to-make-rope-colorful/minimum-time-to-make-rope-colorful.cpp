@@ -13,9 +13,7 @@ public:
                 maxi = max(maxi,nt[i]);
                 i++;
             }
-            cout<<maxi<<endl;
             sum += maxi;
-            
         }
         return total - sum;
     }
