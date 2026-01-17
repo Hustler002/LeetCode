@@ -5,7 +5,7 @@ public:
         unordered_map<int,int> mpp;
         for(auto& it : nums) mpp[it]++;
 
-        set<int> vis;
+        unordered_set<int> vis;
 
         for(int i = 0; i < nums.size(); i++){
             if(vis.find(nums[i]) != vis.end()){
