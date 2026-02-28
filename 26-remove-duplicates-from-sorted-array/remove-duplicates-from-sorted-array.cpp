@@ -8,10 +8,10 @@ public:
         int i=0;
         int prev=0;
         int cprev=0;
-        if(n==2 && nums[0]!=nums[1])
-        {
-            return 2;
-        }
+        // if(n==2 && nums[0]!=nums[1])
+        // {
+        //     return 2;
+        // }
         // if(n==2 && nums[0]==nums[1])
         // {
         //     return 1;
