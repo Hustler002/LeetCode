@@ -35,8 +35,9 @@ public:
     int concatenatedBinary(int n) {
         //string conc = "";
         long res = 0;
+        int digits = 0;
         for(int i = 1; i <= n; i++){
-            int digits = log2(i) + 1;
+            if((i & (i-1)) == 0) digits++;
             res = (((res<<digits) % MOD ) + i ) % MOD;
             
         }
