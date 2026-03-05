@@ -11,7 +11,6 @@ public:
                 s[i] = '!';
             }
         }
-        cout<<s<<endl;
         return cnt;
     }
 };
