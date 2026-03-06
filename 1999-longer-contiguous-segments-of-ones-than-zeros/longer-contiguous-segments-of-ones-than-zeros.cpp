@@ -4,8 +4,8 @@ public:
         int zero = 0, one = 0;
 
         int n = s.size();
-
-        for(int i = 0; i < n;){
+        int i = 0;
+        while(i < n){
             char curr = s[i];
             int cnt = 0;
             bool flag = false;
@@ -14,10 +14,9 @@ public:
                 cnt++;
                 i++;
             }
-            if(flag == true) one = max(one,cnt);
-            else if(flag == false) zero = max(zero,cnt);
+            if(flag) one = max(one,cnt);
+            else zero = max(zero,cnt);
         }
-        cout<<one<< " "<<zero<<endl;
         return one > zero;
     }
 };
