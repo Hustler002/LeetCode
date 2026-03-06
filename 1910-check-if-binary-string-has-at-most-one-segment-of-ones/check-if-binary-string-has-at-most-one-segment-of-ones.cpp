@@ -2,16 +2,9 @@ class Solution {
 public:
     bool checkOnesSegment(string s) {
         int n = s.size();
-        int cnt = 0;
-        bool flag = false;
-        for(int i = 0; i < n; i++){
-            while(i< n && s[i] == '1'){
-                flag = true;
-                i++;
-            }
-            if(flag) cnt++;
-            flag = false;
+        for(int i = 1; i < n-1; i++){
+            if(s[i] == '0' && s[i+1] == '1') return false;
         }
-        return cnt<=1;
+        return true;
     }
 };
