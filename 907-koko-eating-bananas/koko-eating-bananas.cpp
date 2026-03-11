@@ -3,8 +3,7 @@ public:
     bool check(int k, int h, vector<int> piles){
         long long cnt = 0;
         for(auto& it : piles){
-            cnt += it / k;
-            if(it % k != 0) cnt++;
+            cnt += ceil((double)it/(double)k);
         }
         return cnt <= h;
     }
