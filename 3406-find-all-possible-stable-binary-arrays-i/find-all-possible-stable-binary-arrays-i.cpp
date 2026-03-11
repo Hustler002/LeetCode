@@ -39,40 +39,82 @@
 //T.C. = O(one * zero * limit)
 //S.C. = O(one * zero)
 
+// class Solution {
+// public:
+//     int MOD = 1e9 + 7;
+//     long long t[201][201][2];
+
+//     long long solve(int onesLeft, int zerosLeft, bool lastWasOne, int limit){
+//         if(zerosLeft == 0 && onesLeft == 0) return 1;
+
+//         if(t[onesLeft][zerosLeft][lastWasOne] != -1) return t[onesLeft][zerosLeft][lastWasOne];
+
+//         long long res = 0;
+        
+//         // explore zeros
+//         if(lastWasOne == true){
+//             for(int len = 1; len <= min(limit,zerosLeft); len++){
+//                 res = (res + solve(onesLeft, zerosLeft - len, false, limit)) % MOD;
+//             }
+//         }
+//         else{
+//             for(int len = 1; len <= min(limit,onesLeft); len++){
+//                 res = (res + solve(onesLeft - len, zerosLeft, true, limit) % MOD);
+//             }
+//         }
+//         return t[onesLeft][zerosLeft][lastWasOne] = res;
+//     }
+
+//     int numberOfStableArrays(int zero, int one, int limit) {
+//         memset(t, -1, sizeof(t));
+
+//         long long startWithOne = solve(one,zero, false, limit);
+
+//         long long startWithZero = solve(one, zero, true, limit);
+
+//         return (startWithOne + startWithZero) % MOD;
+//     }
+// };
+
+
+
+
+
 class Solution {
 public:
     int MOD = 1e9 + 7;
-    long long t[201][201][2];
-
-    long long solve(int onesLeft, int zerosLeft, bool lastWasOne, int limit){
-        if(zerosLeft == 0 && onesLeft == 0) return 1;
-
-        if(t[onesLeft][zerosLeft][lastWasOne] != -1) return t[onesLeft][zerosLeft][lastWasOne];
-
-        long long res = 0;
-        
-        // explore zeros
-        if(lastWasOne == true){
-            for(int len = 1; len <= min(limit,zerosLeft); len++){
-                res = (res + solve(onesLeft, zerosLeft - len, false, limit)) % MOD;
-            }
-        }
-        else{
-            for(int len = 1; len <= min(limit,onesLeft); len++){
-                res = (res + solve(onesLeft - len, zerosLeft, true, limit) % MOD);
-            }
-        }
-        return t[onesLeft][zerosLeft][lastWasOne] = res;
-    }
+    int t[201][201][2];
 
     int numberOfStableArrays(int zero, int one, int limit) {
-        memset(t, -1, sizeof(t));
+        memset(t, 0 , sizeof(t));
 
-        long long startWithOne = solve(one,zero, false, limit);
+        t[0][0][0] = 1;
+        t[0][0][1] = 1;
 
-        long long startWithZero = solve(one, zero, true, limit);
+        for(int onesLeft = 0 ; onesLeft <= one; onesLeft++){
+            for(int zerosLeft = 0; zerosLeft <= zero; zerosLeft++){
+
+                if(onesLeft == 0 && zerosLeft == 0) continue;
+
+                int result = 0;
+
+                for(int len = 1; len <= min(zerosLeft, limit); len++){
+                    result = (result + t[onesLeft][zerosLeft-len][0]) % MOD;
+                }
+                t[onesLeft][zerosLeft][1] = result;
+
+                result = 0;
+                for(int len = 1; len <= min(onesLeft, limit); len++){
+                    result = (result + t[onesLeft - len][zerosLeft][1]) % MOD;
+                }
+                t[onesLeft][zerosLeft][0] = result;
+
+            }
+        }
+
+        int startWithOne = t[one][zero][false];
+        int startWithZero = t[one][zero][true];
 
         return (startWithOne + startWithZero) % MOD;
     }
 };
-
