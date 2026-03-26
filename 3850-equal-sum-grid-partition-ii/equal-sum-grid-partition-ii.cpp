@@ -100,7 +100,7 @@ private:
         int n = grid[0].size();
         
         // Pass 1: Top-Down
-        set<long long> st;
+        unordered_set<long long> st;
         long long top = 0;
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
