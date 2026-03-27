@@ -10,11 +10,11 @@ public:
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
                 if(i%2==0){
-                    int idx = (((j-k) + n) % n)%n;
+                    int idx = ((j-k) + n)%n;
                     mod[i][idx] = mat[i][j];
                 }
                 else{
-                    int idx = ((j+k) % n)%n;
+                    int idx = (j+k) % n;
                     mod[i][idx] = mat[i][j];
                 }
             }
