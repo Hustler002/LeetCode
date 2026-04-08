@@ -1,25 +1,17 @@
 class Solution {
 public:
-    const int MOD = 1e9+7;
+    int MOD = 1e9+7;
     int xorAfterQueries(vector<int>& nums, vector<vector<int>>& queries) {
-        int n = nums.size();
-        int q = queries.size();
-        for(auto it : queries){
-            int l = it[0];
-            int r = it[1];
-            int k = it[2];
-            long long v = it[3];
-            int idx = l;
-            while(idx <= r){
-                long long num = nums[idx];
-                nums[idx] = (num*v)%MOD;
-                idx += k;
+        for(auto& it : queries){
+            int idx = it[0];
+            while(idx <= it[1]){
+                long long res = (nums[idx]);
+                nums[idx] =  (res*it[3]) % MOD;
+                idx += it[2];
             }
         }
-        int res = nums[0];
-        for(int i = 1; i < n; i++){
-            res ^= nums[i];
-        }
-        return res;
+        int ans = 0;
+        for(auto& it : nums) ans = ans^it;
+        return ans;
     }
 };
