@@ -13,7 +13,7 @@ public:
         int n = nums.size();
         int mini = n;
         unordered_map<int,int> mpp;
-        mpp.reserve(n*2);
+        mpp.reserve(n);
         for(int i = n-1; i >= 0; i--){
             int num = nums[i];
             int rev = mirror(num);
