@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int diff(string q, string d){
+    int diff(string& q, string& d){
         int n = q.size();
         int cnt  = 0;
         for(int i = 0; i < n; i++){
