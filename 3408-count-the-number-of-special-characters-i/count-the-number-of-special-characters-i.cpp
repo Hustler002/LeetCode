@@ -2,7 +2,7 @@ class Solution {
 public:
     int numberOfSpecialChars(string word) {
         int cnt = 0;
-        set<char> st;
+        unordered_set<char> st;
         for(auto& c : word){
             st.insert(c);
         }
