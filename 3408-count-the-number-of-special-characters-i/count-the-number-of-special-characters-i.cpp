@@ -9,10 +9,8 @@ public:
 
         for(auto& it : st){
             if(it >= 'a' && it <= 'z'){
-                int idx = it - 'a';
-                //cout<<idx<<endl;
-                char c = 'A' + idx;
-                if(st.find(c) != st.end()) cnt++;
+                
+                if(st.find(toupper(it)) != st.end()) cnt++;
             }
         }
         return cnt;
